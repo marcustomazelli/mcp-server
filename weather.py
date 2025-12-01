@@ -2,8 +2,10 @@ from typing import Any
 import httpx
 from mcp.server.fastmcp import FastMCP
 
+
 #inicialize the server
-mcp = FastMCP("weather")
+mcp = FastMCP("weather", host="0.0.0.0", port=8000, path="/mcp")
+
 
 #constants
 NWS_API_BASE = "https://api.weather.gov"
@@ -91,7 +93,7 @@ Forecast: {period['detailedForecast']}
 
 def main():
     # Initialize and run the server
-    mcp.run(transport='stdio')
+    mcp.run(transport="streamable-http")
 
 if __name__ == "__main__":
     main()
